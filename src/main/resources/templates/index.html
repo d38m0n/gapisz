@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head id="header" class="alt" th:include="static :: link"/>
+
+<body>
+<div id="menu" class="alt" th:include="menu :: menu"/>
+<div id="includedContent"></div>
+<div id="startPanel" class="container-fluid p-4" style="  position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    width:350px;
+    transform: translate(-50%, -50%);
+    opacity: 80%;
+    border-radius: 5px;">
+<form method="get" action="show-currently-wallet-client">
+        <div class="row">
+            <div class="col-9 p-0">
+                <input name="id_client" type="text" class="form-control" placeholder="ID CLIENT">
+            </div>
+            <div class="col-3 p-0">
+                <button type="submit" class="btn btn-warning">Znajdź</button>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+<footer class="alt" th:include="footer :: footer"/>
+</html>

@@ -1,0 +1,54 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="menu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a id="NameProduct" href="/" class="navbar-brand text-primary font-weight-bold">GAPISZ</a>
+        <div id="optionMenu" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li id="addNew" class="nav-item">
+                    <a href="/add-new">
+                        <button type="button" class="btn btn-dark text-white">
+                            <div><i class='fas fa-folder-plus'></i></div>
+                            Dodaj nowy
+                        </button>
+                    </a>
+                </li>
+                <li id="analyst" class="nav-item active">
+                    <a href="/analyst">
+                        <button type="button" class="btn btn-dark text-white">
+                            <div><i class='fas fa-user-tie'></i></div>
+                            Menadżer finansowy
+                        </button>
+                    </a>
+                </li>
+                <li id="developmentManager" class="nav-item active">
+                    <a href="/development-manager">
+                        <button type="button" class="btn btn-dark text-white">
+                            <div><i class='fas fa-chart-pie'></i></div>
+                            Menadżer rozwoju
+                        </button>
+                    </a>
+                </li>
+                <li id="resourceManager" class="nav-item active">
+                    <a href="/resource-manager">
+                        <button type="button" class="btn btn-dark text-white">
+                            <div><i class='fas fa-database'></i></div>
+                            Menadżer zasobów
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="spinner-grow text-danger mx-5"></div>
+        </span>
+        <h5 id="user_log" class="mr-5" style="color: chartreuse">
+            <span class="glyphicon glyphicon-user" style="text-align: center"><div><label
+                    sec:authentication="name"></label></div></span></h5>
+        <form id="logouts" action="/logout">
+            <button type="submit" class="btn btn-outline-danger">
+                <span class="glyphicon glyphicon-off"></span>
+            </button>
+        </form>
+    </nav>
+</div>
+</html>

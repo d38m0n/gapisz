@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head id="header" class="alt" th:include="static :: link"/>
+<body>
+<h2>ADMIN CONSOLE </h2>
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">LOGIN</th>
+        <th scope="col">ROLA</th>
+        <th scope="col">BRANŻA</th>
+        <th scope="col">PAKIET</th>
+        <th scope="col">ILOŚĆ CLIENTÓW</th>
+        <th scope="col">DATA ZAŁOŻENIA</th>
+        <th scope="col">WAŻNOŚĆ</th>
+        <th scope="col">OPCJE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Użytkownik</td>
+        <td>Catering</td>
+        <td>Basic</td>
+        <td>41201</td>
+        <td>10/02/2019</td>
+        <td>10/02/2021</td>
+        <td>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Dropdown
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">BLOKUJ</a>
+                        <a class="dropdown-item" href="#">RESETUJ HASŁO</a>
+                        <a class="dropdown-item" href="#">ZMIEŃ LOGIN</a>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Użytkownik</td>
+        <td>Catering</td>
+        <td>Premium</td>
+        <td>4112201</td>
+        <td>10/03/2020</td>
+        <td>10/03/2022</td>
+        <td>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Dropdown
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">BLOKUJ</a>
+                        <a class="dropdown-item" href="#">RESETUJ HASŁO</a>
+                        <a class="dropdown-item" href="#">ZMIEŃ LOGIN</a>
+
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

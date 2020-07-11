@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CSBD.1.0.0.0v:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>CSBD.1.0.0.0v</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="CSBD.1.0.0.0v-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="CSBD.1.0.0.0v:war exploded" />
+    </root>
+  </artifact>
+</component>
