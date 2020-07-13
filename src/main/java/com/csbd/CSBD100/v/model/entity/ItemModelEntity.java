@@ -1,9 +1,5 @@
 package com.csbd.CSBD100.v.model.entity;
 
-import com.csbd.CSBD100.v.model.enums.categorie.BasicUnit;
-import com.csbd.CSBD100.v.model.enums.categorie.ItemKind;
-import com.csbd.CSBD100.v.model.enums.categorie.Tax;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,12 +17,12 @@ public class ItemModelEntity {
     private String saleDate;
     private String expirationDate;
     private String paymentDate;
-    private BasicUnit unit;
-    private ItemKind itemKind;
+    private String unit;
+    private String itemKind;
     private String lengthOfWork;
     private String purchasePrice;
     private String salePrice;
-    private Tax tax;
+    private String tax;
 
     public ItemModelEntity() {
     }
@@ -62,12 +58,12 @@ public class ItemModelEntity {
         return this;
     }
 
-    public ItemModelEntity addUnit(BasicUnit unit) {
+    public ItemModelEntity addUnit(String unit) {
         this.unit = unit;
         return this;
     }
 
-    public ItemModelEntity addItemKind(ItemKind itemKind) {
+    public ItemModelEntity addItemKind(String itemKind) {
         this.itemKind = itemKind;
         return this;
     }
@@ -83,7 +79,7 @@ public class ItemModelEntity {
         return this;
     }
 
-    public ItemModelEntity addTax(Tax tax) {
+    public ItemModelEntity addTax(String tax) {
         this.tax = tax;
         return this;
     }
@@ -146,19 +142,19 @@ public class ItemModelEntity {
         this.expirationDate = expirationDate;
     }
 
-    public BasicUnit getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(BasicUnit unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 
-    public ItemKind getItemKind() {
+    public String getItemKind() {
         return itemKind;
     }
 
-    public void setItemKind(ItemKind itemKind) {
+    public void setItemKind(String itemKind) {
         this.itemKind = itemKind;
     }
 
@@ -186,11 +182,11 @@ public class ItemModelEntity {
         this.salePrice = salePrice;
     }
 
-    public Tax getTax() {
+    public String getTax() {
         return tax;
     }
 
-    public void setTax(Tax tax) {
+    public void setTax(String tax) {
         this.tax = tax;
     }
 }

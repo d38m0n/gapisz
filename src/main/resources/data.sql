@@ -1,0 +1,1 @@
+insert into USER_ENTITY (id, email, login, password,role) values (1, 'Test1','Test1','{bcrypt}$2a$10$eVVLgkdNvg.q75tHSXLeoOtNrmlXJbQ9ar0RDRR.0TF81i5x8Oo1y','ROLE_USER');

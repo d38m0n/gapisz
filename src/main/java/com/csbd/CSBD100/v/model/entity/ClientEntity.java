@@ -12,7 +12,7 @@ public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClient;
-    private Status status;
+    private String status;
     private String privatePersonID;
 
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -26,6 +26,15 @@ public class ClientEntity {
     private List<ItemModelEntity> Items = new ArrayList<>();
 
     public ClientEntity() {
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public ClientEntity(String privatePersonID) {

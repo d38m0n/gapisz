@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head id="header" class="alt" th:include="static :: link"/>
+
+<body>
+<div id="menu" class="alt" th:include="menu :: menu"/>
+
+<h1>Stwórz nowego użytkownika Tylko dla admina</h1>
+
+</body>
+
+<form th:action="@{/add-user}" th:object="${userToInsert}" method="post">
+    <p> Email : <input type="text" th:field="*{email}"/></p>
+    <p> Login : <input type="text" th:field="*{login}"/></p>
+    <p> Hasło : <input type="password" th:field="*{password}"/></p>
+    <select th:field="*{role}">
+        <option th:each="role:${T(com.csbd.CSBD100.v.model.enums.type.RoleUserType).values()}"
+                th:value="${role}"
+                th:text="${role}">
+        </option>
+    </select>
+    <p><input type="submit" value="dodaj"/></p>
+</form>
+
+
+<footer class="alt" th:include="footer :: footer"/>
+</html>

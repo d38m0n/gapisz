@@ -4,6 +4,16 @@
         <a id="NameProduct" href="/" class="navbar-brand text-primary font-weight-bold">GAPISZ</a>
         <div id="optionMenu" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
+                   <span sec:authorize="hasRole('ROLE_ADMIN')">
+                <li id="addUser" class="nav-item active ">
+                    <a href="/add-user">
+                        <button type="button" class="btn btn-dark text-white">
+                            <div><i class='	far fa-plus-square'></i></div>
+                            Dodaj użytkownika
+                        </button>
+                    </a>
+                </li>
+                </span>
                 <li id="addNew" class="nav-item">
                     <a href="/add-new">
                         <button type="button" class="btn btn-dark text-white">
