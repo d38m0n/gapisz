@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div th:fragment="menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a id="NameProduct" href="/" class="navbar-brand text-primary font-weight-bold">GAPISZ</a>
+        <a id="NameProduct" href="/" class="text-primary font-weight-bold">GAPISZ</a>
         <div id="optionMenu" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                    <span sec:authorize="hasRole('ROLE_ADMIN')">
@@ -51,9 +51,9 @@
         <span sec:authorize="hasRole('ROLE_ADMIN')">
             <div class="spinner-grow text-danger mx-5"></div>
         </span>
-        <h5 id="user_log" class="mr-5" style="color: chartreuse">
+        <div id="user_log" class="mr-5" style="color: chartreuse">
             <span class="glyphicon glyphicon-user" style="text-align: center"><div><label
-                    sec:authentication="name"></label></div></span></h5>
+                    sec:authentication="name"></label></div></span></div>
         <form id="logouts" action="/logout">
             <button type="submit" class="btn btn-outline-danger">
                 <span class="glyphicon glyphicon-off"></span>

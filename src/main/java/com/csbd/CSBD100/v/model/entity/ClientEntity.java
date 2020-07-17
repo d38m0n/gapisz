@@ -1,7 +1,5 @@
 package com.csbd.CSBD100.v.model.entity;
 
-import com.csbd.CSBD100.v.model.enums.categorie.Status;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,7 @@ public class ClientEntity {
     private String privatePersonID;
 
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    private CustomerData customerData;
+    private CustomerDataEntity customerDataEntity;
 
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(name = "customer_item",
@@ -53,12 +51,12 @@ public class ClientEntity {
         this.privatePersonID = privatePersonID;
     }
 
-    public CustomerData getCustomerData() {
-        return customerData;
+    public CustomerDataEntity getCustomerDataEntity() {
+        return customerDataEntity;
     }
 
-    public void setCustomerData(CustomerData customerData) {
-        this.customerData = customerData;
+    public void setCustomerDataEntity(CustomerDataEntity customerDataEntity) {
+        this.customerDataEntity = customerDataEntity;
     }
 
     public List<ItemModelEntity> getItems() {

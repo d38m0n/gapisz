@@ -10,7 +10,7 @@ public class ItemModelEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idItem;
+    private Long id;
     private String brandCode;
     private String fullName;
     private int workingTime;
@@ -98,8 +98,8 @@ public class ItemModelEntity {
         this.paymentDate = paymentDate;
     }
 
-    public Long getIdItem() {
-        return idItem;
+    public Long getId() {
+        return id;
     }
 
     public String getBrandCode() {

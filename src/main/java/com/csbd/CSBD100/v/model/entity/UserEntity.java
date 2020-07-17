@@ -78,6 +78,9 @@ public class UserEntity {
     public void setClientEntities(List<ClientEntity> clientEntities) {
         this.clientEntities = clientEntities;
     }
+    public void addClientEntities(ClientEntity clientEntity){
+        this.clientEntities.add(clientEntity);
+    }
 
     public void setItemsUser(List<ItemModelEntity> itemsUser) {
         this.itemsUser = itemsUser;

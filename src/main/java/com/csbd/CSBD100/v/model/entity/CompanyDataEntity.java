@@ -10,7 +10,7 @@ public class CompanyDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCompany;
+    private Long id;
     private int nip;
     private int regon;
     private String fullName;
@@ -21,8 +21,8 @@ public class CompanyDataEntity {
     public CompanyDataEntity() {
       }
 
-    public Long getIdCompany() {
-        return idCompany;
+    public Long getId() {
+        return id;
     }
 
     public int getNip() {

@@ -3,10 +3,10 @@ package com.csbd.CSBD100.v.model.entity;
 import javax.persistence.*;
 
 @Entity
-public class CustomerData {
+public class CustomerDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCustomer;
+    private Long id;
     private String firstName;
     private String surname;
     private String city;
@@ -18,11 +18,11 @@ public class CustomerData {
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private CompanyDataEntity companyDataEntity;
 
-    public CustomerData() {
+    public CustomerDataEntity() {
     }
 
-    public Long getIdCustomer() {
-        return idCustomer;
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
