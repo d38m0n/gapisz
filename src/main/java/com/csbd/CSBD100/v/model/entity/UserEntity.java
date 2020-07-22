@@ -13,6 +13,9 @@ public class UserEntity {
     private String login;
     private String password;
     private String role;
+    private String city;
+    private String zipCode;
+    private boolean isActive;
 
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(name = "user_clients",
@@ -29,6 +32,30 @@ public class UserEntity {
 
     public List<ItemModelEntity> getItemsUser() {
         return itemsUser;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public Long getId() {

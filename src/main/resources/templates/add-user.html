@@ -5,40 +5,106 @@
 
 <body>
 <div id="menu" class="alt" th:include="menu :: menu"/>
-
-<h1>Stwórz nowego użytkownika Tylko dla admina</h1>
-
 </body>
-<div id="globalBox" class="container-fluid p-4 w-75">
-    <form th:action="@{/add-user}" th:object="${userToInsert}" method="post">
+<div class="containera globalBox align-middle bg-warning w-50">
+<div id="tileBoxCreateUser" class="p-3">
+    <h2> Kreator nowego użytkownika</h2>
+</div>
+    <div id="createUserForm" class="p-5 ">
 
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Login i hasło</span>
-            </div>
-            <input type="text" aria-label="Login" class="form-control" th:field="*{login}"/>
-            <input type="password" aria-label="Hasło" class="form-control" th:field="*{password}"/>
-            <div class="input-group flex-nowrap">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping">E-mail</span>
+        <form class="needs-validation border border-secondary p-3" novalidate th:action="@{/add-user}" th:object="${userToInsert}" method="post">
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="login">Twój login</label>
+
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class='fas fa-user-tie'></i></span>
+                            </div>
+                            <input id="login" type="text" aria-label="Login" class="form-control" th:field="*{login}"/>
+                        </div>
+                    </div>
                 </div>
-                <input type="email" th:field="*{email}" class="form-control" placeholder="E-mail" aria-label="E-mail"
-                       aria-describedby="addon-wrapping"/>
+
+                <div class="col-md-4 mb-3">
+                    <label for="pwd">Hasło</label>
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class='fas fa-key'></i></span>
+                            </div>
+                            <input id="pwd" type="password" aria-label="Hasło" class="form-control"
+                                   th:field="*{password}"/></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="role">Rola</label>
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend"><i
+                                        class='fas fa-balance-scale'></i></span>
+                            </div>
+                            <select class="custom-select" id="role" th:field="*{role}">
+                                <option th:each="role:${T(com.csbd.CSBD100.v.model.enums.type.RoleUserType).values()}"
+                                        th:value="${role}"
+                                        th:text="${role}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="email">E-mail</label>
+
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@ </span>
+                            </div>
+                            <input id="email" type="email" th:field="*{email}" class="form-control" placeholder="E-mail"
+                                   aria-label="E-mail"
+                                   aria-describedby="addon-wrapping"/></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="validationCustom04">Miejscowość </label>
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class='fas fa-map-marker-alt'></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="validationCustom04" placeholder="Miejscowość"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationCustom05">Kod pocztowy</label>
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class='far fa-envelope'></i></span>
+                            </div>
+                            <input type="text" pattern="[0-9]{5}" class="form-control" id="validationCustom05"
+                                   placeholder="00000" required>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <select class="custom-select" id="inputGroupSelect01" th:field="*{role}">
-                <option th:each="role:${T(com.csbd.CSBD100.v.model.enums.type.RoleUserType).values()}"
-                        th:value="${role}"
-                        th:text="${role}">
-                </option>
-            </select>
-        </div>
-        <p><input type="submit" value="dodaj"/></p>
-    </form>
+            <button class="btn btn-primary btn-block" type="submit">Utwórz</button>
+        </form>
+
+
+
+    </div>
 </div>
 
 <footer class="alt" th:include="footer :: footer"/>

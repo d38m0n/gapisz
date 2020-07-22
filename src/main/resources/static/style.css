@@ -4,11 +4,26 @@ body {
     background-size: cover;
     font-family: 'Roboto', sans-serif;
 }
-#NameProduct{
+
+#NameProduct {
     font-size: x-large;
     text-decoration: none;
     font-family: Trebuchet MS, sans-serif;
 }
+
+.globalBox {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    width: 900px;
+    transform: translate(-50%, -50%);
+    background: #ffc107;
+    opacity: 80%;
+    border-radius: 5px;
+}
+
 #connectingPanel {
     position: absolute;
     top: 50%;
@@ -20,7 +35,10 @@ body {
     opacity: 80%;
     border-radius: 5px;
 }
-
+#tileBoxCreateUser{
+    text-align: center;
+    font-family: "Fira Code";
+}
 #startPanel {
     position: absolute;
     top: 50%;
@@ -42,15 +60,7 @@ body {
 }
 
 #logPanel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    width: 300px;
-    transform: translate(-50%, -50%);
-    background: #FFFFCC;
-    opacity: 80%;
-    border-radius: 5px;
+
 }
 
 #LogoProduct {
@@ -61,10 +71,11 @@ body {
 
 #sloganProduct {
     text-align: center;
-    color: darkgrey;
+    color: dimgrey;
 
 }
-#loginOption{
+
+#loginOption {
     padding-top: 10px;
     text-align: center;
 }
