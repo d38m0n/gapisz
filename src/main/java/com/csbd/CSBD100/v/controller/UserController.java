@@ -1,17 +1,15 @@
 package com.csbd.CSBD100.v.controller;
 
-import com.csbd.CSBD100.v.model.dto.ClientDTO;
 import com.csbd.CSBD100.v.model.dto.UserDTO;
-import com.csbd.CSBD100.v.service.client.ClientService;
 import com.csbd.CSBD100.v.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
 
 @Controller
 public class UserController {
@@ -26,14 +24,22 @@ public class UserController {
 
 
 
-    @GetMapping("/add-user")
-    public ModelAndView userView() {
-        return new ModelAndView("add-user", "userToInsert", new UserDTO());
+    @GetMapping("/user")
+    public String userView( Model model) {
+        model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("userToInsert",new UserDTO());
+        return "/user";
     }
 
-    @PostMapping("/add-user")
+    @PostMapping("/delete-user")
+    public String deleteUser(@ModelAttribute("user") UserDTO user){
+        userService.deleteUser(user.getId());
+        return "redirect:/user";
+    }
+
+    @PostMapping("/user")
     public String addUser(@ModelAttribute UserDTO userDto) {
         userService.addUser(userDto);
-        return "redirect:/index";
+        return "redirect:/user";
     }
 }

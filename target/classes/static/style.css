@@ -22,6 +22,7 @@ body {
     background: #ffc107;
     opacity: 80%;
     border-radius: 5px;
+    overflow: auto;
 }
 
 #connectingPanel {
@@ -38,6 +39,10 @@ body {
 #tileBoxCreateUser{
     text-align: center;
     font-family: "Fira Code";
+}
+img {
+    max-width: 100%;
+    height: auto;
 }
 #startPanel {
     position: absolute;

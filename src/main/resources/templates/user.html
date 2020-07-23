@@ -6,13 +6,14 @@
 <body>
 <div id="menu" class="alt" th:include="menu :: menu"/>
 </body>
-<div class="containera globalBox align-middle bg-warning w-50">
-<div id="tileBoxCreateUser" class="p-3">
-    <h2> Kreator nowego użytkownika</h2>
-</div>
-    <div id="createUserForm" class="p-5 ">
+<div class="containera globalBox align-middle bg-warning w-75 h-75">
+    <div id="tileBoxCreateUser" class="p-3">
 
-        <form class="needs-validation border border-secondary p-3" novalidate th:action="@{/add-user}" th:object="${userToInsert}" method="post">
+    </div>
+    <div id="createUserForm" class="p-5 ">
+        <h2> Kreator nowego użytkownika</h2>
+        <form class="needs-validation border border-secondary p-3" novalidate th:action="@{/user}"
+              th:object="${userToInsert}" method="post">
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="login">Twój login</label>
@@ -74,36 +75,76 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label for="validationCustom04">Miejscowość </label>
+                    <label for="city">Miejscowość </label>
                     <div class="input-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class='fas fa-map-marker-alt'></i></span>
                             </div>
-                            <input type="text" class="form-control" id="validationCustom04" placeholder="Miejscowość"
-                                   required>
-                        </div>
+                            <input id="city" type="text" th:field="*{city}" class="form-control" placeholder="Miasto"
+                                   aria-label="Miasto"
+                                   aria-describedby="addon-wrapping"/></div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationCustom05">Kod pocztowy</label>
-                    <div class="input-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class='far fa-envelope'></i></span>
-                            </div>
-                            <input type="text" pattern="[0-9]{5}" class="form-control" id="validationCustom05"
-                                   placeholder="00000" required>
-                        </div>
-                    </div>
 
+            <div class="col-md-3 mb-3">
+                <label for="zip">Kod pocztowy</label>
+                <div class="input-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class='far fa-envelope'></i>
+
+                            </span>
+                            <input id="zip" type="text" th:field="*{zipCode}" class="form-control" placeholder="Kod Pocztowy"
+                                   aria-label="Kod Pocztowy"
+                                   aria-describedby="addon-wrapping"/>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-primary btn-block" type="submit">Utwórz</button>
+            </div>
+                <button class="btn btn-primary btn-block btn-lg" type="submit"><i class='fas fa-user-plus p-2'></i> Utwórz</button>
         </form>
 
 
+    </div>
+    <div id="viewAllUsers" class="p-5">
+        <h2> Edytuj użytkownika</h2>
+        <table class="table ">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-2">Login</th>
+                <th class="col-4">Email</th>
+                <th class="col-2">Role</th>
+                <th class="col-2">Miasto</th>
+                <th class="col-1">Kod pocztowy</th>
+                <th class="col-1">Opcje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="d-flex" th:each="user: ${allUsers}">
+                <form action="/delete-user" method="post" th:object="${user}">
 
+
+                    <td class="col-2" th:text="${user.login}"></td>
+                    <td class="col-4" th:text="${user.email}"></td>
+                    <td class="col-2" th:text="${user.role}"></td>
+                    <td class="col-2" th:text="${user.city}"></td>
+                    <td class="col-1" th:text="${user.zipCode}"></td>
+                    <td class="col-1" >
+                            <input type="hidden" name="id" th:value="${user.id}">
+                            <button class="btn btn-outline-danger  btn-block" value="remove"> <i class='fas fa-user-minus p-2'></i>Usuń</button>
+
+                    </td>
+                    </td>
+
+                </form>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

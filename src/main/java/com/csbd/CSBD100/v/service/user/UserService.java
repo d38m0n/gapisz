@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -27,7 +29,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserEntity getUserEntity (){
+    public UserEntity getUserEntity() {
         UserEntity userEntity = userRepository
                 .findByLogin(getUser())
                 .orElseThrow(() -> new UserNotFoundException("Not find", HttpStatus.BAD_REQUEST));
@@ -42,20 +44,41 @@ public class UserService {
     }
 
     public void addUser(UserDTO userDTO) {
-        UserEntity userEntity = modelMapper.map(userDTO,UserEntity.class);
+        UserEntity userEntity = modelMapper.map(userDTO, UserEntity.class);
+
+        userEntity = Optional.of(userEntity)
+                .filter(u -> checkingAvailableLogin(userDTO.getLogin()))
+                .orElseThrow(() -> new UserNotFoundException("This Login Exist", HttpStatus.CONFLICT));
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        userEntity = userRepository.save(userEntity);
 
-    }
-    public List<ClientEntity> getClients(){
-       return getUserEntity().getClientEntities();
-
-    }
-    public void  upload (UserEntity userEntity){
-                userRepository.save(userEntity);
+        userRepository.save(userEntity);
     }
 
-    public void deleteUser(Long id){
+    private boolean checkingAvailableLogin(String login) {
+        return userRepository.findAll().stream()
+                .filter(userEntity -> userEntity.getLogin().equals(login))
+                .findAny()
+                .isEmpty();
+    }
+
+    public List<ClientEntity> getClients() {
+        return getUserEntity().getClientEntities();
+
+    }
+
+    public void upload(UserEntity userEntity) {
+        userRepository.save(userEntity);
+    }
+
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }
