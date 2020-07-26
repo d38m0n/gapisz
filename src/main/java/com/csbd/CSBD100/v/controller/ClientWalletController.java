@@ -16,7 +16,7 @@ public class ClientWalletController {
 
     @PostMapping("/add-client")
     public String addUser(@ModelAttribute ClientDTO clientDTO) {
-        clientService.addNewClient(clientDTO);
+
         return "redirect:/index";
     }
 

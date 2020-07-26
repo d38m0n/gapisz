@@ -25,7 +25,10 @@ public class ClientEntity {
 
     public ClientEntity() {
     }
-
+     public ClientEntity factoryClient (ClientEntity clientEntity){
+             this.privatePersonID = clientEntity.getPrivatePersonID();
+             return this;
+     }
 
     public String getStatus() {
         return status;
@@ -47,8 +50,9 @@ public class ClientEntity {
         return privatePersonID;
     }
 
-    public void setPrivatePersonID(String privatePersonID) {
+    public ClientEntity setPrivatePersonID(String privatePersonID) {
         this.privatePersonID = privatePersonID;
+        return this;
     }
 
     public CustomerDataEntity getCustomerDataEntity() {

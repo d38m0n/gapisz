@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
     private final String positive = "  Success";
-    private final String negative = "  Try again";
+    private final String cleaner = "";
+
 
     @Autowired
     private UserService userService;
-    private String reqAdd = "",reqDel="";
+    private String reqAdd = "", reqDel = "";
 
 
     @GetMapping("/d38m0n")
@@ -33,27 +34,25 @@ public class UserController {
         model.addAttribute("userToInsert", new UserDTO());
         model.addAttribute("reqAdd", reqAdd);
         model.addAttribute("reqDeleted", reqDel);
-        reqAdd ="";
-        reqDel ="";
+        reqAdd = reqDel = cleaner;
         return "/user";
     }
 
     @PostMapping("/delete-user")
     public String deleteUser(@ModelAttribute("user") UserDTO user) {
-
         userService.deleteUser(user.getId());
-        reqDel =positive;
+        reqDel = positive;
         return "redirect:/user";
     }
 
     @PostMapping(value = "/user")
+
     public String addUser(@ModelAttribute UserDTO userDto) {
         try {
             userService.addUser(userDto);
             reqAdd = positive;
-
         } catch (UserNotFoundException e) {
-            reqAdd = negative;
+            reqAdd = e.getMessage();
         }
         return "redirect:/user";
     }

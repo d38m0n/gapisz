@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -27,26 +28,35 @@ public class ClientService {
         this.modelMapper = modelMapper;
         this.userService = userService;
         this.clientRepository = clientRepository;
-
-
     }
 
     public List<ClientDTO> getClientsDTO() {
         List<ClientEntity> clients = userService.getClients();
-        List<ClientDTO> clientDTOList = clients
-                .stream()
+        return clients.stream()
                 .map(user -> modelMapper.map(user, ClientDTO.class))
                 .collect(Collectors.toList());
-
-        return clientDTOList;
     }
-    public void addNewClient(ClientDTO clientDTO){
-        ClientEntity clientEntity = modelMapper.map(clientDTO,ClientEntity.class);
-        UserEntity userEntity = userService.getUserEntity();
-        userEntity.addClientEntities(clientEntity);
+
+    public void addClient(String personalID) {
+        // not tested
+        ClientEntity clientEntityToUpdateOrCreate = findClient(personalID)
+                .orElse(new ClientEntity().setPrivatePersonID(personalID));
+
+        UserEntity userEntity = userService
+                .getUserEntity()
+                .addClientEntities(clientEntityToUpdateOrCreate);
         userService.upload(userEntity);
+    }
 
 
+    private Optional<ClientEntity> findClient(String personalID) {
+        return userService.getUserEntity().getClientEntities().stream()
+                .filter(c -> c.getPrivatePersonID().equals(personalID))
+                .findFirst();
+    }
+
+    private ClientEntity createClientEntity(ClientDTO clientDTO) {
+        return modelMapper.map(clientDTO, ClientEntity.class);
     }
 
 }

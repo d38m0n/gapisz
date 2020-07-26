@@ -7,7 +7,6 @@ import com.csbd.CSBD100.v.model.entity.UserEntity;
 import com.csbd.CSBD100.v.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,41 +28,36 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserEntity getUserEntity() {
-        UserEntity userEntity = userRepository
+    public UserEntity getUserEntity() throws UserNotFoundException {
+        return userRepository
                 .findByLogin(getUser())
                 .orElseThrow(() -> new UserNotFoundException("Not find", HttpStatus.BAD_REQUEST));
-        return userEntity;
     }
 
     public String getUser() {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.printf(authentication.getName());
-        return authentication.getName();
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    public void addUser(UserDTO userDTO) throws  UserNotFoundException {
-        UserEntity userEntity = modelMapper.map(userDTO, UserEntity.class);
+    public void addUser(UserDTO userDTO) throws UserNotFoundException {
 
-        userEntity = Optional.of(userEntity)
-                .filter(u -> checkingAvailableLogin(userDTO.getLogin()))
-                .orElseThrow(() -> new UserNotFoundException("This Login Exist", HttpStatus.CONFLICT));
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+        UserEntity createUser = Optional.of(modelMapper.map(userDTO, UserEntity.class))
+                .filter(u -> checkingAvailableLogin(userDTO.getLogin(), userDTO.getEmail()))
+                .map(u -> u.setPassword(passwordEncoder.encode(userDTO.getPassword())))
+                .orElseThrow(() -> new UserNotFoundException("This Login or Email Exist", HttpStatus.CONFLICT));
 
-        userRepository.save(userEntity);
+        userRepository.save(createUser);
     }
 
-    private boolean checkingAvailableLogin(String login) {
+    private boolean checkingAvailableLogin(String login, String email) {
         return userRepository.findAll().stream()
-                .filter(userEntity -> userEntity.getLogin().equals(login))
-                .findAny()
+                .filter(u -> u.getLogin().equals(login) || u.getEmail().equals(email))
+                .findFirst()
                 .isEmpty();
     }
 
+
     public List<ClientEntity> getClients() {
         return getUserEntity().getClientEntities();
-
     }
 
     public void upload(UserEntity userEntity) {

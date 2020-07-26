@@ -36,6 +36,7 @@ public class UserEntity {
         return itemsUser;
     }
 
+
     public String getCity() {
         return city;
     }
@@ -88,8 +89,9 @@ public class UserEntity {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getRole() {
@@ -107,8 +109,9 @@ public class UserEntity {
     public void setClientEntities(List<ClientEntity> clientEntities) {
         this.clientEntities = clientEntities;
     }
-    public void addClientEntities(ClientEntity clientEntity){
+    public UserEntity addClientEntities(ClientEntity clientEntity){
         this.clientEntities.add(clientEntity);
+        return this;
     }
 
     public void setItemsUser(List<ItemModelEntity> itemsUser) {
