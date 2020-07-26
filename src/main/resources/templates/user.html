@@ -11,7 +11,8 @@
 
     </div>
     <div id="createUserForm" class="p-5 ">
-        <h2> Kreator nowego użytkownika</h2>
+        <h2> Kreator nowego użytkownika <span id="reqError" class="text-info" th:text="${reqAdd}"> </span></h2>
+
         <form class="needs-validation border border-secondary p-3" novalidate th:action="@{/user}"
               th:object="${userToInsert}" method="post">
             <div class="form-row">
@@ -23,7 +24,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class='fas fa-user-tie'></i></span>
                             </div>
-                            <input id="login" type="text" aria-label="Login" class="form-control" th:field="*{login}"/>
+                            <input id="login" type="text" aria-label="Login" class="form-control" th:field="*{login}"
+                                   required/>
                         </div>
                     </div>
                 </div>
@@ -36,7 +38,7 @@
                                 <span class="input-group-text"><i class='fas fa-key'></i></span>
                             </div>
                             <input id="pwd" type="password" aria-label="Hasło" class="form-control"
-                                   th:field="*{password}"/></div>
+                                   th:field="*{password}" required/></div>
                     </div>
                 </div>
 
@@ -70,7 +72,7 @@
                             </div>
                             <input id="email" type="email" th:field="*{email}" class="form-control" placeholder="E-mail"
                                    aria-label="E-mail"
-                                   aria-describedby="addon-wrapping"/></div>
+                                   aria-describedby="addon-wrapping" required/></div>
                     </div>
                 </div>
 
@@ -83,36 +85,39 @@
                             </div>
                             <input id="city" type="text" th:field="*{city}" class="form-control" placeholder="Miasto"
                                    aria-label="Miasto"
-                                   aria-describedby="addon-wrapping"/></div>
+                                   aria-describedby="addon-wrapping" required/></div>
                     </div>
                 </div>
 
-            <div class="col-md-3 mb-3">
-                <label for="zip">Kod pocztowy</label>
-                <div class="input-group">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
+                <div class="col-md-3 mb-3">
+                    <label for="zip">Kod pocztowy</label>
+                    <div class="input-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class='far fa-envelope'></i>
 
                             </span>
-                            <input id="zip" type="text" th:field="*{zipCode}" class="form-control" placeholder="Kod Pocztowy"
-                                   aria-label="Kod Pocztowy"
-                                   aria-describedby="addon-wrapping"/>
+                                <input id="zip" type="text" th:field="*{zipCode}" class="form-control"
+                                       placeholder="Kod Pocztowy"
+                                       aria-label="Kod Pocztowy"
+                                       aria-describedby="addon-wrapping" required/>
+
+                            </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
-            </div>
-                <button class="btn btn-primary btn-block btn-lg" type="submit"><i class='fas fa-user-plus p-2'></i> Utwórz</button>
+            <button class="btn btn-primary btn-block btn-lg" type="submit"><i class='fas fa-user-plus p-2'></i> Utwórz
+            </button>
         </form>
 
 
     </div>
     <div id="viewAllUsers" class="p-5">
-        <h2> Edytuj użytkownika</h2>
+        <h2> Edytuj użytkownika <span id="reqEdit" class="text-info" th:text="${reqDeleted}"> </span></h2>
+
         <table class="table ">
             <thead>
             <tr class="d-flex">
@@ -121,7 +126,7 @@
                 <th class="col-2">Role</th>
                 <th class="col-2">Miasto</th>
                 <th class="col-1">Kod pocztowy</th>
-                <th class="col-1">Opcje</th>
+                <th class="col-1 text-center ">Opcje</th>
             </tr>
             </thead>
             <tbody>
@@ -134,9 +139,11 @@
                     <td class="col-2" th:text="${user.role}"></td>
                     <td class="col-2" th:text="${user.city}"></td>
                     <td class="col-1" th:text="${user.zipCode}"></td>
-                    <td class="col-1" >
-                            <input type="hidden" name="id" th:value="${user.id}">
-                            <button class="btn btn-outline-danger  btn-block" value="remove"> <i class='fas fa-user-minus p-2'></i>Usuń</button>
+                    <td class="col-1">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <button class="btn btn-outline-danger  btn-block" value="remove"><i
+                                class='fas fa-user-minus p-2'></i>Usuń
+                        </button>
 
                     </td>
                     </td>

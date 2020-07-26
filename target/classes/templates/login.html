@@ -31,7 +31,7 @@
 
             </div>
             <div class="text-center">
-                <button type="submit" onclick="loadSpinner21()" class="btn btn-primary btn-block">
+                <button type="submit" onclick="loadSpinner21()" class="btn  btn-outline-dark btn-block">
                     <div id="spinnerLoading"> Login</div>
                 </button>
             </div>
@@ -41,12 +41,158 @@
     </div>
     <div id="loginOption">
         <div class="btn-group btn-block" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-warning">Reset hasła</button>
-            <button type="button" class="btn btn-warning">Kontakt</button>
-            <button type="button" class="btn btn-warning">O Projekcie</button>
+            <a class="btn btn-warning" data-toggle="modal" data-target="#restPwd" role="button">Reset Hasła</a>
+            <a class="btn btn-warning" data-toggle="modal" data-target="#contactForm" role="button">Kontakt</a>
+            <a class="btn btn-warning" href="/about" role="button">O Projekcie</a>
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="contactForm" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-warning">
+            <div class="modal-header">
+                <h5 class="modal-title">Gapisz PRO - Pomaga Rozwiązuje Optymalizuje </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body ">
+                <section class="mb-4">
+
+                    <!--Section heading-->
+                    <h2 class="h1-responsive font-weight-bold text-center my-4">Kontakt z nami</h2>
+                    <!--Section description-->
+                    <p class="text-center w-responsive mx-auto mb-5">Czy masz jakieś pytania lub sugestie? Jeśli tak
+                        prosimy o kontakt</p>
+
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-9 mb-md-0 mb-5">
+                            <form id="contact-form" name="contact-form" method="POST">
+
+                                <!--Grid row-->
+                                <div class="row">
+
+                                    <!--Grid column-->
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="name" name="name" class="form-control">
+                                            <label for="name" class="">Imię</label>
+                                        </div>
+                                    </div>
+                                    <!--Grid column-->
+
+                                    <!--Grid column-->
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="email" name="email" class="form-control">
+                                            <label for="email" class="">E-mail</label>
+                                        </div>
+                                    </div>
+                                    <!--Grid column-->
+
+                                </div>
+                                <!--Grid row-->
+
+                                <!--Grid row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="subject" name="subject" class="form-control">
+                                            <label for="subject" class="">Temat</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Grid row-->
+
+                                <!--Grid row-->
+                                <div class="row">
+
+                                    <!--Grid column-->
+                                    <div class="col-md-12">
+
+                                        <div class="md-form">
+                                            <textarea type="text" id="message" name="message" rows="2"
+                                                      class="form-control md-textarea"></textarea>
+                                            <label for="message">Twoja wiadomość</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div class="text-center text-md-left">
+                                <a class="btn btn-outline-dark btn-block"
+                                   onclick="document.getElementById('contact-form').submit();">Wyślij</a>
+                            </div>
+                            <div class="status"></div>
+                        </div>
+
+
+                        <div class="col-md-3 text-center">
+                            <ul class="list-unstyled mb-0">
+                                <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                                    <p>Polska</p>
+                                </li>
+
+                                <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                                    <p>+48 792 939 360</p>
+                                </li>
+
+                                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                                    <p>biuro@gapisz.pl</p>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="restPwd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content bg-warning">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Reset hasła </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Login">
+                        </div>
+                        <div class="col">
+                            <input type="email" class="form-control" placeholder="E-mail">
+                        </div>
+                    </div>
+                    <div class="m-3 text-right">
+                        <button type="submit" class="btn  btn-outline-dark">Resetuj</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <p class="my-auto">Zostanie wysłany link do stworzenia nowego hasła na podany e-mail.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <footer class="alt" th:include="footer :: footer"/>
 </html>

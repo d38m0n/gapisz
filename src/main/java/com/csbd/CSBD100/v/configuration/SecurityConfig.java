@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/index/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                .antMatchers("/add-new/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("ROLE_SUPERADMIN")
                 .antMatchers("/analyst/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/development-manager/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/resource-manager/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
@@ -53,9 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .password(passwordEncoder.encode("a"))
                 .roles("USER")
                 .and()
-                .withUser("Admin")
+                .withUser("SuperAdmin")
                 .password(passwordEncoder.encode("s"))
-                .roles("USER", "ADMIN");
+                .roles("USER", "ADMIN","SUPERADMIN");
         auth.jdbcAuthentication()
                 .usersByUsernameQuery("SELECT login, password, 1 from USER_ENTITY where login=?")
                 .authoritiesByUsernameQuery("SELECT login, role, 1, from USER_ENTITY  where login=?")

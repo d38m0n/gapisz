@@ -43,7 +43,7 @@ public class UserService {
         return authentication.getName();
     }
 
-    public void addUser(UserDTO userDTO) {
+    public void addUser(UserDTO userDTO) throws  UserNotFoundException {
         UserEntity userEntity = modelMapper.map(userDTO, UserEntity.class);
 
         userEntity = Optional.of(userEntity)

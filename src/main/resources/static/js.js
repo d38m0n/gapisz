@@ -36,8 +36,9 @@ $(function () {
     });
 });
 
+
+$('body').scrollspy({ target: '#navbar-example' })
+
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
-
-$('body').scrollspy({ target: '#navbar-example' })

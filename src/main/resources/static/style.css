@@ -24,6 +24,12 @@ body {
     border-radius: 5px;
     overflow: auto;
 }
+#reqError{
+    color: chartreuse;
+}
+#reqEdit{
+    color: chartreuse;
+}
 
 #connectingPanel {
     position: absolute;

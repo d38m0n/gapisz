@@ -1,5 +1,7 @@
 package com.csbd.CSBD100.v.model.entity;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
