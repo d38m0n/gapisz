@@ -23,6 +23,28 @@ public class ItemModelEntity {
     private String purchasePrice;
     private String salePrice;
     private String tax;
+    private int amount;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void plusAmount(int amount) {
+        this.amount += amount;
+    }
+
+    public void minusAmount(int amount) {
+        this.amount -= amount;
+    }
+
 
     public ItemModelEntity() {
     }

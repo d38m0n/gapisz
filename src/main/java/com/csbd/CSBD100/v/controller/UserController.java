@@ -46,7 +46,6 @@ public class UserController {
     }
 
     @PostMapping(value = "/user")
-
     public String addUser(@ModelAttribute UserDTO userDto) {
         try {
             userService.addUser(userDto);

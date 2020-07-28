@@ -31,10 +31,8 @@ public class ClientService {
     }
 
     public List<ClientDTO> getClientsDTO() {
-        List<ClientEntity> clients = userService.getClients();
-        return clients.stream()
-                .map(user -> modelMapper.map(user, ClientDTO.class))
-                .collect(Collectors.toList());
+
+        return null;
     }
 
     public void addClient(String personalID) {

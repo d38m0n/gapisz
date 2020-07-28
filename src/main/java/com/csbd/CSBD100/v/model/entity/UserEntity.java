@@ -1,7 +1,5 @@
 package com.csbd.CSBD100.v.model.entity;
 
-import org.springframework.validation.annotation.Validated;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +34,10 @@ public class UserEntity {
         return itemsUser;
     }
 
+    public UserEntity addItem(ItemModelEntity itemModelEntity) {
+        this.itemsUser.add(itemModelEntity);
+        return this;
+    }
 
     public String getCity() {
         return city;
@@ -109,7 +111,8 @@ public class UserEntity {
     public void setClientEntities(List<ClientEntity> clientEntities) {
         this.clientEntities = clientEntities;
     }
-    public UserEntity addClientEntities(ClientEntity clientEntity){
+
+    public UserEntity addClientEntities(ClientEntity clientEntity) {
         this.clientEntities.add(clientEntity);
         return this;
     }
