@@ -18,11 +18,10 @@ import java.util.stream.Collectors;
 @Service
 public class ClientService {
     private ModelMapper modelMapper;
-
+    private ClientRepository clientRepository;
 
     @Autowired
     private UserService userService;
-    private ClientRepository clientRepository;
 
     public ClientService(ModelMapper modelMapper, UserService userService, ClientRepository clientRepository) {
         this.modelMapper = modelMapper;
@@ -31,18 +30,19 @@ public class ClientService {
     }
 
     public List<ClientDTO> getClientsDTO() {
-
-        return null;
+        return userService.getUserEntity().getClientEntities().stream()
+                .map(c -> modelMapper.map(c, ClientDTO.class))
+                .collect(Collectors.toList());
     }
 
     public void addClient(String personalID) {
-        // not tested
-        ClientEntity clientEntityToUpdateOrCreate = findClient(personalID)
+        ClientEntity c = findClient(personalID)
                 .orElse(new ClientEntity().setPrivatePersonID(personalID));
 
         UserEntity userEntity = userService
                 .getUserEntity()
-                .addClientEntities(clientEntityToUpdateOrCreate);
+                .addClientEntities(clientRepository.save(c));
+
         userService.upload(userEntity);
     }
 

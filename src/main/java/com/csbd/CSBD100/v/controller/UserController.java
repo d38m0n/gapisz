@@ -13,20 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private final String positive = "  Success";
-    private final String cleaner = "";
-
+    public final static String POSITIVE = "  Success";
+    public final static String CLEANER = "";
 
     @Autowired
     private UserService userService;
     private String reqAdd = "", reqDel = "";
 
-
     @GetMapping("/d38m0n")
     public String d38m0n() {
         return "admin-console";
     }
-
 
     @GetMapping("/user")
     public String userView(Model model) {
@@ -34,14 +31,14 @@ public class UserController {
         model.addAttribute("userToInsert", new UserDTO());
         model.addAttribute("reqAdd", reqAdd);
         model.addAttribute("reqDeleted", reqDel);
-        reqAdd = reqDel = cleaner;
+        reqAdd = reqDel = CLEANER;
         return "/user";
     }
 
     @PostMapping("/delete-user")
     public String deleteUser(@ModelAttribute("user") UserDTO user) {
         userService.deleteUser(user.getId());
-        reqDel = positive;
+        reqDel = POSITIVE;
         return "redirect:/user";
     }
 
@@ -49,7 +46,7 @@ public class UserController {
     public String addUser(@ModelAttribute UserDTO userDto) {
         try {
             userService.addUser(userDto);
-            reqAdd = positive;
+            reqAdd = POSITIVE;
         } catch (UserNotFoundException e) {
             reqAdd = e.getMessage();
         }

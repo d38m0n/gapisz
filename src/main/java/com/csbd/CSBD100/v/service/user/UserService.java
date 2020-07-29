@@ -1,11 +1,8 @@
 package com.csbd.CSBD100.v.service.user;
 
 import com.csbd.CSBD100.v.exception.UserNotFoundException;
-import com.csbd.CSBD100.v.model.dto.ItemModelDTO;
 import com.csbd.CSBD100.v.model.dto.UserDTO;
-import com.csbd.CSBD100.v.model.entity.ItemModelEntity;
 import com.csbd.CSBD100.v.model.entity.UserEntity;
-import com.csbd.CSBD100.v.repository.ItemModelRepository;
 import com.csbd.CSBD100.v.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -22,14 +19,14 @@ import java.util.stream.Collectors;
 public class UserService {
     private ModelMapper modelMapper;
     private UserRepository userRepository;
-    private ItemModelRepository itemModelRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UserService(ModelMapper modelMapper, UserRepository userRepository, PasswordEncoder passwordEncoder, ItemModelRepository itemModelRepository) {
+
+    public UserService(ModelMapper modelMapper, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.itemModelRepository = itemModelRepository;
+
     }
 
     public UserEntity getUserEntity() throws UserNotFoundException {
@@ -43,7 +40,6 @@ public class UserService {
     }
 
     public void addUser(UserDTO userDTO) throws UserNotFoundException {
-
         UserEntity uE = Optional.of(modelMapper.map(userDTO, UserEntity.class))
                 .filter(u -> checkingAvailableLogin(userDTO.getLogin(), userDTO.getEmail()))
                 .map(u -> u.setPassword(passwordEncoder.encode(userDTO.getPassword())))
@@ -52,37 +48,11 @@ public class UserService {
         upload(uE);
     }
 
-    public void addItemDTO(ItemModelDTO itemModelDTO) throws UserNotFoundException {
-        UserEntity u = userRepository.findByLogin(getUser()).get();
-        ItemModelEntity itemEntity = Optional.of(modelMapper.map(itemModelDTO, ItemModelEntity.class))
-                .filter(i -> checkingAvailableBrandCode(itemModelDTO.getBrandCode()))
-                .orElseThrow(() -> new UserNotFoundException("This Login or Email Exist", HttpStatus.CONFLICT));
-        u.addItem(itemModelRepository.save(itemEntity));
-        upload(u);
-
-    }
-
-
     private boolean checkingAvailableLogin(String login, String email) {
         return userRepository.findAll().stream()
                 .filter(u -> u.getLogin().equals(login) || u.getEmail().equals(email))
                 .findFirst()
                 .isEmpty();
-    }
-
-    private boolean checkingAvailableBrandCode(String brandCode) {
-        return getUserEntity().getItemsUser().stream()
-                .filter(i -> i.getBrandCode().equals(brandCode))
-                .findAny()
-                .isEmpty();
-    }
-
-    public List<ItemModelDTO> getItemsDTO() {
-        return getUserEntity()
-                .getItemsUser()
-                .stream()
-                .map(item -> modelMapper.map(item, ItemModelDTO.class))
-                .collect(Collectors.toList());
     }
 
     public void upload(UserEntity userEntity) {
@@ -91,13 +61,6 @@ public class UserService {
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
-    }
-
-    public void deleteItem(Long id) {
-        UserEntity u = getUserEntity();
-        u.deleteItemUser(itemModelRepository.findById(id).get());
-        userRepository.save(u);
-        itemModelRepository.deleteById(id);
     }
 
     public List<UserDTO> getAllUsers() {
