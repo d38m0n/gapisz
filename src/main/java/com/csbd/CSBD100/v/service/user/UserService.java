@@ -25,10 +25,11 @@ public class UserService {
     private ItemModelRepository itemModelRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UserService(ModelMapper modelMapper, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(ModelMapper modelMapper, UserRepository userRepository, PasswordEncoder passwordEncoder, ItemModelRepository itemModelRepository) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.itemModelRepository = itemModelRepository;
     }
 
     public UserEntity getUserEntity() throws UserNotFoundException {
@@ -52,16 +53,13 @@ public class UserService {
     }
 
     public void addItemDTO(ItemModelDTO itemModelDTO) throws UserNotFoundException {
-        UserEntity userEntity = userRepository
-                .findByLogin(getUser()).get();
-
+        UserEntity u = userRepository.findByLogin(getUser()).get();
         ItemModelEntity itemEntity = Optional.of(modelMapper.map(itemModelDTO, ItemModelEntity.class))
                 .filter(i -> checkingAvailableBrandCode(itemModelDTO.getBrandCode()))
                 .orElseThrow(() -> new UserNotFoundException("This Login or Email Exist", HttpStatus.CONFLICT));
+        u.addItem(itemModelRepository.save(itemEntity));
+        upload(u);
 
-        userEntity.addItem(itemEntity);
-
-        upload(userEntity);
     }
 
 
@@ -95,12 +93,18 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void deleteItem(Long id) {
+        UserEntity u = getUserEntity();
+        u.deleteItemUser(itemModelRepository.findById(id).get());
+        userRepository.save(u);
+        itemModelRepository.deleteById(id);
+    }
+
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
                 .map(u -> modelMapper.map(u, UserDTO.class))
                 .collect(Collectors.toList());
     }
-
 
 }

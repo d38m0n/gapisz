@@ -178,44 +178,44 @@
 
 
     </div>
-<!--        <div id="viewAllUsers" class="p-5">-->
-<!--            <h2> Edytuj użytkownika <span id="reqEdit" class="text-info" th:text="${reqDeleted}"> </span></h2>-->
+        <div id="viewAllUsers" class="p-5">
+            <h2> Edytuj użytkownika <span id="reqEdit" class="text-info" th:text="${reqDeleted}"> </span></h2>
 
-<!--            <table class="table ">-->
-<!--                <thead>-->
-<!--                <tr class="d-flex">-->
-<!--                    <th class="col-2">Login</th>-->
-<!--                    <th class="col-4">Email</th>-->
-<!--                    <th class="col-2">Role</th>-->
-<!--                    <th class="col-2">Miasto</th>-->
-<!--                    <th class="col-1">Kod pocztowy</th>-->
-<!--                    <th class="col-1 text-center ">Opcje</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr class="d-flex" th:each="item: ${items}">-->
-<!--                    <form action="/delete-user" method="post" th:object="${item}">-->
+            <table class="table ">
+                <thead>
+                <tr class="d-flex">
+                    <th class="col-2">Login</th>
+                    <th class="col-4">Email</th>
+                    <th class="col-2">Role</th>
+                    <th class="col-2">Miasto</th>
+                    <th class="col-1">Kod pocztowy</th>
+                    <th class="col-1 text-center ">Opcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="d-flex" th:each="item: ${items}">
+                    <form action="/delete-item" method="post" th:object="${item}">
 
 
-<!--                        <td class="col-2" th:text="${item.fullName}"></td>-->
-<!--                        <td class="col-4" th:text="${item.itemKind}"></td>-->
-<!--                        <td class="col-2" th:text="${item.unit}"></td>-->
-<!--                        <td class="col-2" th:text="${item.paymentDate}"></td>-->
-<!--                        <td class="col-1" th:text="${item.lengthOfWork}"></td>-->
-<!--                        <td class="col-1">-->
-<!--                            <input type="hidden" name="id" th:value="${item.id}">-->
-<!--                            <button class="btn btn-outline-danger  btn-block" value="remove"><i-->
-<!--                                    class='fas fa-user-minus p-2'></i>Usuń-->
-<!--                            </button>-->
+                        <td class="col-2" th:text="${item.fullName}"></td>
+                        <td class="col-4" th:text="${item.itemKind}"></td>
+                        <td class="col-2" th:text="${item.unit}"></td>
+                        <td class="col-2" th:text="${item.paymentDate}"></td>
+                        <td class="col-1" th:text="${item.lengthOfWork}"></td>
+                        <td class="col-1">
+                            <input type="hidden" name="id" th:value="${item.id}">
+                            <button class="btn btn-outline-danger  btn-block" value="remove"><i
+                                    class='fas fa-user-minus p-2'></i>Usuń
+                            </button>
 
-<!--                        </td>-->
-<!--                        </td>-->
+                        </td>
+                        </td>
 
-<!--                    </form>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </div>
 </body>
 <footer class="alt" th:include="footer :: footer"/>

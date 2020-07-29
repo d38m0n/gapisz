@@ -117,6 +117,10 @@ public class UserEntity {
         return this;
     }
 
+    public void deleteItemUser(ItemModelEntity itemModelEntity) {
+        this.itemsUser.remove(itemModelEntity);
+    }
+
     public void setItemsUser(List<ItemModelEntity> itemsUser) {
         this.itemsUser = itemsUser;
     }
