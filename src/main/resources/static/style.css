@@ -30,7 +30,11 @@ body {
 #reqEdit{
     color: chartreuse;
 }
-
+#productField{
+    font-size: x-small;
+    color: #e4e4e4;
+    overflow: auto;
+}
 #connectingPanel {
     position: absolute;
     top: 50%;

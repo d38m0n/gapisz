@@ -1,0 +1,12 @@
+
+${Ansi.WHITE}         DDDDDDDDDDD         DDDDDDDD        DDDD       MMMMMMM       MMMMMMM       MMMMM      MMMMMM         MMM
+${Ansi.WHITE}         DDDD     DDDD             DDD     DDD  DDD     MMM  MMM     MMM  MMM     MMM   MMM    MMM  MMM       MMM
+${Ansi.WHITE}         DDDD       DDDD            DDD  DDD     DDD    MMM   MMM   MMM   MMM    MMM     MMM   MMM   MMM      MMM
+${Ansi.WHITE}         DDDD        DDDD          DDD     DDD  DDD     MMM    MMM MMM    MMM    MMM     MMM   MMM    MMM     MMM
+${Ansi.RED}         DDDD        DDDD      DDDDDD        DDDD       MMM     MMMM      MMM    MMM     MMM   MMM     MMM    MMM
+${Ansi.RED}         DDDD        DDDD          DDD     DDD  DDD     MMM      MM       MMM    MMM     MMM   MMM      MMM   MMM
+${Ansi.RED}         DDDD      DDDD             DDD  DDD     DDD    MMM               MMM    MMM     MMM   MMM       MMM  MMM
+${Ansi.RED}         DDDD     DDDD             DDD    DDD   DDD     MMM               MMM     MMM   MMM    MMM       MMM  MMM
+${Ansi.RED}         DDDDDDDDDDDD        DDDDDDDD        DDDD       MMM               MMM       MMMMM      MMM        MMMMMMM
+
+${Ansi.RED} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}

@@ -1,5 +1,6 @@
 package com.csbd.CSBD100.v.service;
 
+import com.csbd.CSBD100.v.exception.ItemNotFoundException;
 import com.csbd.CSBD100.v.exception.UserNotFoundException;
 import com.csbd.CSBD100.v.model.dto.ItemModelDTO;
 import com.csbd.CSBD100.v.model.entity.ItemModelEntity;
@@ -33,7 +34,6 @@ public class ItemService {
         UserEntity u = userService.getUserEntity()
                 .addItem(addItem(itemModelDTO));
         userService.upload(u);
-
     }
 
     private ItemModelEntity addItem(ItemModelDTO itemModelDTO) throws UserNotFoundException {
@@ -44,12 +44,12 @@ public class ItemService {
     public ItemModelEntity getItemModelEntity(ItemModelDTO itemModelDTO) throws UserNotFoundException {
         ItemModelEntity itemEntity = Optional.of(modelMapper.map(itemModelDTO, ItemModelEntity.class))
                 .filter(i -> checkingAvailableBrandCode(itemModelDTO.getBrandCode()))
-                .orElseThrow(() -> new UserNotFoundException("This BrandCode Exist", HttpStatus.CONFLICT));
+                .orElseThrow(() -> new ItemNotFoundException("This BrandCode Exist", HttpStatus.CONFLICT));
         return itemEntity;
     }
 
     private boolean checkingAvailableBrandCode(String brandCode) {
-        return userService.getUserEntity().getItemsUser().stream()
+        return userService.getUserEntity().getItems().stream()
                 .filter(i -> i.getBrandCode().equals(brandCode))
                 .findAny()
                 .isEmpty();
@@ -57,7 +57,7 @@ public class ItemService {
 
     public List<ItemModelDTO> getItemsDTO() {
         return userService.getUserEntity()
-                .getItemsUser()
+                .getItems()
                 .stream()
                 .map(item -> modelMapper.map(item, ItemModelDTO.class))
                 .collect(Collectors.toList());

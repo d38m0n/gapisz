@@ -28,14 +28,14 @@ public class UserEntity {
     @JoinTable(name = "user_intems",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")})
-    private List<ItemModelEntity> itemsUser = new ArrayList<>();
+    private List<ItemModelEntity> Items = new ArrayList<>();
 
-    public List<ItemModelEntity> getItemsUser() {
-        return itemsUser;
+    public List<ItemModelEntity> getItems() {
+        return Items;
     }
 
     public UserEntity addItem(ItemModelEntity itemModelEntity) {
-        this.itemsUser.add(itemModelEntity);
+        this.Items.add(itemModelEntity);
         return this;
     }
 
@@ -118,10 +118,10 @@ public class UserEntity {
     }
 
     public void deleteItemUser(ItemModelEntity itemModelEntity) {
-        this.itemsUser.remove(itemModelEntity);
+        this.Items.remove(itemModelEntity);
     }
 
-    public void setItemsUser(List<ItemModelEntity> itemsUser) {
-        this.itemsUser = itemsUser;
+    public void setItems(List<ItemModelEntity> itemsUser) {
+        this.Items = itemsUser;
     }
 }

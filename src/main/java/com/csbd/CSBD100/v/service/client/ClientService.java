@@ -35,17 +35,17 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public void addClient(String personalID) {
+    public  ClientEntity viewClient(String personalID) {
         ClientEntity c = findClient(personalID)
-                .orElse(new ClientEntity().setPrivatePersonID(personalID));
+                .orElse(new ClientEntity().setAutoCreate(personalID));
 
         UserEntity userEntity = userService
                 .getUserEntity()
                 .addClientEntities(clientRepository.save(c));
 
         userService.upload(userEntity);
+        return c;
     }
-
 
     private Optional<ClientEntity> findClient(String personalID) {
         return userService.getUserEntity().getClientEntities().stream()

@@ -1,5 +1,6 @@
 package com.csbd.CSBD100.v.controller;
 
+import com.csbd.CSBD100.v.exception.ItemNotFoundException;
 import com.csbd.CSBD100.v.exception.UserNotFoundException;
 import com.csbd.CSBD100.v.model.dto.ItemModelDTO;
 
@@ -16,6 +17,7 @@ import static com.csbd.CSBD100.v.controller.UserController.POSITIVE;
 
 @Controller
 public class ItemModelController {
+
     @Autowired
     private ItemService itemService;
 
@@ -33,7 +35,6 @@ public class ItemModelController {
     @PostMapping("/delete-item")
     public String deleteUser(@ModelAttribute("item") ItemModelDTO itemModelDTO) {
         itemService.deleteItem(itemModelDTO.getId());
-
         return "redirect:/item";
     }
     @PostMapping("/item")
@@ -42,7 +43,7 @@ public class ItemModelController {
         itemService.addItemDTO(itemModelDTO);
             reqAdd = POSITIVE;
     } catch (
-    UserNotFoundException e) {
+    ItemNotFoundException e) {
         reqAdd = e.getMessage();
     }
         return "redirect:/item";
