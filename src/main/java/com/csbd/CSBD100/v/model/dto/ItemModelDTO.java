@@ -15,6 +15,8 @@ public class ItemModelDTO {
     private String salePrice;
     private String tax;
     private int amount;
+    private String dateAddToMag;
+    private String dataAddToClient;
 
     public int getAmount() {
         return amount;
@@ -128,4 +130,19 @@ public class ItemModelDTO {
         this.tax = tax;
     }
 
+    public String getDateAddToMag() {
+        return dateAddToMag;
+    }
+
+    public void setDateAddToMag(String dateAddToMag) {
+        this.dateAddToMag = dateAddToMag;
+    }
+
+    public String getDataAddToClient() {
+        return dataAddToClient;
+    }
+
+    public void setDataAddToClient(String dataAddToClient) {
+        this.dataAddToClient = dataAddToClient;
+    }
 }

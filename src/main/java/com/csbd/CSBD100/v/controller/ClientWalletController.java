@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+
 
 
 @Controller
@@ -21,18 +21,12 @@ public class ClientWalletController {
     @Autowired
     private ClientService clientService;
 
-
-
     @GetMapping("/client")
     public ModelAndView viewWallet(HttpServletRequest req) {
         String idClient = req.getParameter("id_client");
 
-
-
             ClientEntity clientEntity = clientService.viewClient(idClient);
-
             return new ModelAndView ("client-wallet","id_client", clientEntity);
-
     }
 
     @PostMapping("/add-client")

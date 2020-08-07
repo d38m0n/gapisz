@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head id="header" class="alt" th:include="static :: link"/>
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<div id="menu" class="alt" th:include="menu :: menu"/>
+<div class="container globalBox align-middle bg-warning w-75 h-75">
+    <h1 th:text="${id_client}"></h1>
+    <table class="table ">
+        <thead>
+        <tr class="d-flex">
+            <th class="col-3">Pełna nazwa</th>
+            <th class="col-1">Brandcode</th>
+            <th class="col-1">Ilość</th>
+            <th class="col-1">Ważne do</th>
+            <th class="col-1">Rodzaj</th>
+            <th class="col-1">Jednostka</th>
+            <th class="col-1">Cena zakupu</th>
+            <th class="col-1">Czas użytkowania</th>
+            <th class="col-1 text-center ">Opcje</th>
+        </tr>
+        </thead>
+        <div style="overflow: auto;">
+            <tbody>
+            <tr class="d-flex" th:each="item: ${items}">
+                <form action="/shop" method="post" th:object="${item}">
+                    <td class="col-3" th:text="${item.fullName}"></td>
+                    <td class="col-1" th:text="${item.brandCode}"></td>
+                    <td class="col-1" th:text="${item.amount}"></td>
+                    <td class="col-1" th:text="${item.expirationDate}"></td>
+                    <td class="col-1" th:text="${item.itemKind}"></td>
+                    <td class="col-1" th:text="${item.unit}"></td>
+                    <td class="col-1" th:text="${item.paymentDate}"></td>
+                    <td class="col-1" th:text="${item.salePrice}"></td>
+                    <td class="col-1" th:text="${item.lengthOfWork}"></td>
+                    <td class="col-1">
+                        <input type="hidden" name="id" th:value="${item.id}">
+                        <input type="hidden" name="clientName" th:value="${id_client}">
+                        <button class="btn btn-outline-danger  btn-block" type="submit"><i
+                                class='far fa-trash-alt p-2'></i>Dodaj
+                        </button>
+                    </td>
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </div>
+    </table>
+    <footer>
+        <form action="/client" method="get">
+            <input type="hidden" name="id_client" th:value="${id_client}">
+            <button type="submit">Wróć</button>
+        </form>
+    </footer>
+</div>
+</body>
+<footer class="alt" th:include="footer :: footer"/>
+</html>

@@ -1,7 +1,7 @@
 package com.csbd.CSBD100.v.controller;
 
 import com.csbd.CSBD100.v.exception.ItemNotFoundException;
-import com.csbd.CSBD100.v.exception.UserNotFoundException;
+
 import com.csbd.CSBD100.v.model.dto.ItemModelDTO;
 
 import com.csbd.CSBD100.v.service.ItemService;

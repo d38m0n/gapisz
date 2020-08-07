@@ -69,4 +69,9 @@ public class ItemService {
         itemModelRepository.deleteById(id);
         userService.upload(u);
     }
+
+    public ItemModelEntity getItem(Long id) {
+        return itemModelRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException("This id not Exist", HttpStatus.BAD_REQUEST));
+    }
 }

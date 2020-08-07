@@ -3,7 +3,6 @@ package com.csbd.CSBD100.v.model.entity;
 import com.csbd.CSBD100.v.model.enums.categorie.Status;
 
 import javax.persistence.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +34,7 @@ public class ClientEntity {
     @JoinTable(name = "client_item",
             joinColumns = {@JoinColumn(name = "customer_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")})
-    private List<ItemModelEntity> Items = new ArrayList<>();
+    private List<ItemModelEntity> items = new ArrayList<>();
 
     public ClientEntity() {
     }
@@ -44,10 +43,10 @@ public class ClientEntity {
         return createData;
     }
 
-    public ClientEntity factoryClient (ClientEntity clientEntity){
-             this.privatePersonID = clientEntity.getPrivatePersonID();
-             return this;
-     }
+    public ClientEntity factoryClient(ClientEntity clientEntity) {
+        this.privatePersonID = clientEntity.getPrivatePersonID();
+        return this;
+    }
 
     public String getStatus() {
         return status;
@@ -73,10 +72,13 @@ public class ClientEntity {
 
         this.privatePersonID = privatePersonID;
         this.setStatus(Status.NOWY.name());
-        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-        Date date = new Date();
         this.sumOfBuy = "0";
-        this.createData = df.format(date);
+        this.createData = new SimpleDateFormat("dd/MM/yy HH:mm:ss").format(new Date());
+        return this;
+    }
+
+    public ClientEntity addItem(ItemModelEntity imd) {
+        this.items.add(imd);
         return this;
     }
 
@@ -89,10 +91,10 @@ public class ClientEntity {
     }
 
     public List<ItemModelEntity> getItems() {
-        return Items;
+        return items;
     }
 
     public void setItems(List<ItemModelEntity> items) {
-        Items = items;
+        this.items = items;
     }
 }

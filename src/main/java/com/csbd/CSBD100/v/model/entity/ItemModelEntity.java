@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class ItemModelEntity {
@@ -11,7 +14,11 @@ public class ItemModelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String dateAddToMag;
+    private String dataAddToClient;
+
     private String brandCode;
+
     private String fullName;
     private int workingTime;
     private String saleDate;
@@ -24,7 +31,6 @@ public class ItemModelEntity {
     private String salePrice;
     private String tax;
     private int amount;
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,6 +53,8 @@ public class ItemModelEntity {
 
 
     public ItemModelEntity() {
+        this.dateAddToMag = new SimpleDateFormat("dd/MM/yy HH:mm:ss").format(new Date());
+
     }
 
 
@@ -210,5 +218,22 @@ public class ItemModelEntity {
 
     public void setTax(String tax) {
         this.tax = tax;
+    }
+
+    public String getDateAddToMag() {
+        return dateAddToMag;
+    }
+
+    public void setDateAddToMag(String dateAddToMag) {
+        this.dateAddToMag = dateAddToMag;
+    }
+
+    public String getDataAddToClient() {
+        return dataAddToClient;
+    }
+
+    public ItemModelEntity setDataAddToClient() {
+        this.dataAddToClient = new SimpleDateFormat("dd/MM/yy HH:mm:ss").format(new Date());
+        return this;
     }
 }
