@@ -28,12 +28,19 @@
                                 <p th:text="${id_client.sumOfBuy}"></p></div>
 
                         </div>
-                        <div id="aiKey" class=" border border-dark">
-                            <div id="buttonsAdd">
+                        <div id="buttonsWallet">
+                            <div id="bAdd">
                                 <form method="get" action="/shop">
                                     <input name="id_client" type="text" class="form-control"
                                            th:value="${id_client.privatePersonID}" hidden>
                                     <button type="submit" class="btn btn-secondary btn-block">Dodaj Nowy</button>
+                                </form>
+                            </div>
+                            <div id="bInf" class="p-1">
+                                <form method="get" action="/client-information">
+                                    <input name="id_client" type="text" class="form-control"
+                                           th:value="${id_client.privatePersonID}" hidden>
+                                    <button type="submit" class="btn btn-secondary btn-block">Informacje</button>
                                 </form>
                             </div>
                         </div>

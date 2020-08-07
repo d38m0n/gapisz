@@ -38,22 +38,22 @@ public class ItemService {
 
     private ItemModelEntity addItem(ItemModelDTO itemModelDTO) throws UserNotFoundException {
         ItemModelEntity itemEntity = getItemModelEntity(itemModelDTO);
-        return itemModelRepository.save(itemEntity);
+        return itemModelRepository.save(itemEntity.setDateAddToMag());
     }
 
     public ItemModelEntity getItemModelEntity(ItemModelDTO itemModelDTO) throws UserNotFoundException {
         ItemModelEntity itemEntity = Optional.of(modelMapper.map(itemModelDTO, ItemModelEntity.class))
-                .filter(i -> checkingAvailableBrandCode(itemModelDTO.getBrandCode()))
+//                .filter(i -> checkingAvailableBrandCode(itemModelDTO.getBrandCode()))
                 .orElseThrow(() -> new ItemNotFoundException("This BrandCode Exist", HttpStatus.CONFLICT));
         return itemEntity;
     }
 
-    private boolean checkingAvailableBrandCode(String brandCode) {
-        return userService.getUserEntity().getItems().stream()
-                .filter(i -> i.getBrandCode().equals(brandCode))
-                .findAny()
-                .isEmpty();
-    }
+//    private boolean checkingAvailableBrandCode(String brandCode) {
+//        return userService.getUserEntity().getItems().stream()
+//                .filter(i -> i.getBrandCode().equals(brandCode))
+//                .findAny()
+//                .isEmpty();
+//    }
 
     public List<ItemModelDTO> getItemsDTO() {
         return userService.getUserEntity()

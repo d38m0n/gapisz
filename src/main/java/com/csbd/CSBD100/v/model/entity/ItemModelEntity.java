@@ -16,9 +16,7 @@ public class ItemModelEntity {
     private Long id;
     private String dateAddToMag;
     private String dataAddToClient;
-
     private String brandCode;
-
     private String fullName;
     private int workingTime;
     private String saleDate;
@@ -43,17 +41,9 @@ public class ItemModelEntity {
         this.amount = amount;
     }
 
-    public void plusAmount(int amount) {
-        this.amount += amount;
-    }
-
-    public void minusAmount(int amount) {
-        this.amount -= amount;
-    }
-
 
     public ItemModelEntity() {
-        this.dateAddToMag = new SimpleDateFormat("dd/MM/yy HH:mm:ss").format(new Date());
+
 
     }
 
@@ -224,8 +214,9 @@ public class ItemModelEntity {
         return dateAddToMag;
     }
 
-    public void setDateAddToMag(String dateAddToMag) {
-        this.dateAddToMag = dateAddToMag;
+    public ItemModelEntity setDateAddToMag() {
+        this.dateAddToMag = getDate();
+        return this;
     }
 
     public String getDataAddToClient() {
@@ -233,7 +224,11 @@ public class ItemModelEntity {
     }
 
     public ItemModelEntity setDataAddToClient() {
-        this.dataAddToClient = new SimpleDateFormat("dd/MM/yy HH:mm:ss").format(new Date());
+        this.dataAddToClient = getDate();
         return this;
+    }
+
+    private String getDate() {
+        return new SimpleDateFormat("dd/MM/yy HH:mm:ss").format(new Date());
     }
 }
