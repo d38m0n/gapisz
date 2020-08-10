@@ -25,7 +25,8 @@
         <div style="overflow: auto;">
             <tbody>
             <tr class="d-flex" th:each="item: ${items}">
-                <form action="/shop" method="post" th:object="${item}">
+
+                <form action="/shop" method="post"  th:unless="${item.isAvailable()}" th:if="${item.dataAddToClient==null}" th:object="${item}">
                     <td class="col-3" th:text="${item.fullName}"></td>
                     <td class="col-1" th:text="${item.brandCode}"></td>
                     <td class="col-1" th:text="${item.amount}"></td>

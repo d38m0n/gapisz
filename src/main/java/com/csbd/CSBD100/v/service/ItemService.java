@@ -43,17 +43,10 @@ public class ItemService {
 
     public ItemModelEntity getItemModelEntity(ItemModelDTO itemModelDTO) throws UserNotFoundException {
         ItemModelEntity itemEntity = Optional.of(modelMapper.map(itemModelDTO, ItemModelEntity.class))
-//                .filter(i -> checkingAvailableBrandCode(itemModelDTO.getBrandCode()))
                 .orElseThrow(() -> new ItemNotFoundException("This BrandCode Exist", HttpStatus.CONFLICT));
         return itemEntity;
     }
 
-//    private boolean checkingAvailableBrandCode(String brandCode) {
-//        return userService.getUserEntity().getItems().stream()
-//                .filter(i -> i.getBrandCode().equals(brandCode))
-//                .findAny()
-//                .isEmpty();
-//    }
 
     public List<ItemModelDTO> getItemsDTO() {
         return userService.getUserEntity()
@@ -70,8 +63,31 @@ public class ItemService {
         userService.upload(u);
     }
 
+    public void blockItem(Long id) {
+        changeAvailable(id,true);
+    }
+    public void unblockItem(Long id) {
+        changeAvailable(id,false);
+    }
+
+    public void editItem(ItemModelDTO itemModelDTO){
+
+
+    }
+
+    private void changeAvailable(Long id,boolean b) {
+        UserEntity u = userService.getUserEntity();
+        u.getItems().stream()
+                .filter(i -> i.getId().equals(id))
+                .map(i->i.setAvailable(b))
+                .findFirst();
+        userService.upload(u);
+    }
+
     public ItemModelEntity getItem(Long id) {
         return itemModelRepository.findById(id)
                 .orElseThrow(() -> new ItemNotFoundException("This id not Exist", HttpStatus.BAD_REQUEST));
     }
+
+
 }

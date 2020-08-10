@@ -17,6 +17,15 @@ public class ItemModelDTO {
     private int amount;
     private String dateAddToMag;
     private String dataAddToClient;
+    private boolean available;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public int getAmount() {
         return amount;

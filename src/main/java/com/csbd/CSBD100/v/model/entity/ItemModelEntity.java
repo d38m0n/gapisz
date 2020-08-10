@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,6 +28,32 @@ public class ItemModelEntity {
     private String salePrice;
     private String tax;
     private int amount;
+    private boolean available;
+
+    public void setDateAddToMag(String dateAddToMag) {
+        this.dateAddToMag = dateAddToMag;
+    }
+
+    public void setDataAddToClient(String dataAddToClient) {
+        this.dataAddToClient = dataAddToClient;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable() {
+        this.available = true;
+    }
+    public void notAvailable() {
+        this.available = false;
+    }
+
+    public ItemModelEntity setAvailable(boolean available) {
+        this.available = available;
+        return this;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

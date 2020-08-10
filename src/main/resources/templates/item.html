@@ -64,11 +64,8 @@
                             </div>
                             <input id="workingTime" type="number" class="form-control"
                                    th:field="*{workingTime}" required/></div>
-
-
                     </div>
                 </div>
-
             </div>
 
             <div id="levelTwo" class="form-row">
@@ -177,47 +174,88 @@
 
 
     </div>
-        <div id="viewAllUsers" class="p-5">
-            <h2> Edytuj przedmiot <span id="reqEdit" class="text-info" th:text="${reqDeleted}"> </span></h2>
-            <table class="table ">
-                <thead>
-                <tr class="d-flex">
-                    <th class="col-3">Pełna nazwa</th>
-                    <th class="col-1">Brandcode</th>
-                    <th class="col-1">Ilość</th>
-                    <th class="col-1">Ważne do</th>
-                    <th class="col-1">Rodzaj</th>
-                    <th class="col-1">Jednostka</th>
-                    <th class="col-1">Cena zakupu</th>
-                    <th class="col-1">Czas użytkowania</th>
-                    <th class="col-1 text-center ">Opcje</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="d-flex" th:each="item: ${items}">
-                    <form action="/delete-item" method="post" th:object="${item}">
-                        <td class="col-3" th:text="${item.fullName}"></td>
-                        <td class="col-1" th:text="${item.brandCode}"></td>
-                        <td class="col-1" th:text="${item.amount}"></td>
-                        <td class="col-1" th:text="${item.expirationDate}"></td>
-                        <td class="col-1" th:text="${item.itemKind}"></td>
-                        <td class="col-1" th:text="${item.unit}"></td>
-                        <td class="col-1" th:text="${item.paymentDate}"></td>
-                        <td class="col-1" th:text="${item.salePrice}"></td>
-                        <td class="col-1" th:text="${item.lengthOfWork}"></td>
-                        <td class="col-1">
-                            <input type="hidden" name="id" th:value="${item.id}">
-                            <button class="btn btn-outline-danger  btn-block" value="remove"><i
-                                    class='far fa-trash-alt p-2'></i>Usuń
+    <div id="viewAllUsers" class="p-5">
+        <h2> Dodane: <span id="reqEdit" class="text-info" th:text="${reqDeleted}"> </span></h2>
+        <table class="table ">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-3">Pełna nazwa</th>
+                <th class="col-1">Brandcode</th>
+                <th class="col-1">Ilość</th>
+                <th class="col-1">Ważne do</th>
+                <th class="col-1">Rodzaj</th>
+                <th class="col-1">Jednostka</th>
+                <th class="col-1">Cena zakupu</th>
+                <th class="col-1">Czas użytkowania</th>
+                <th class="col-1">Zablokowany</th>
+                <th class="col-1 text-center "></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="d-flex" th:each="item: ${items}">
+                <div th:if="${item.dataAddToClient==null}">
+                    <td class="col-3" th:text="${item.fullName}"></td>
+                    <td class="col-1" th:text="${item.brandCode}"></td>
+                    <td class="col-1" th:text="${item.amount}"></td>
+                    <td class="col-1" th:text="${item.expirationDate}"></td>
+                    <td class="col-1" th:text="${item.itemKind}"></td>
+                    <td class="col-1" th:text="${item.unit}"></td>
+                    <td class="col-1" th:text="${item.paymentDate}"></td>
+                    <td class="col-1" th:text="${item.lengthOfWork}"></td>
+                    <td class="col-1 text-center ">
+                        <span th:unless="${item.isAvailable()}"> NIE </span>
+                        <span th:if="${item.isAvailable()}"> TAK </span></td>
+                    <td id="optionByItem" class="col-1">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-info  btn-block dropdown-toggle" type="button"
+                                    id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Opcje
                             </button>
-                        </td>
-                        </td>
-                    </form>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div id="removeOption">
+                                    <form action="/delete-item" method="post" th:object="${item}">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <button class="btn btn-link" value="remove"><i
+                                                class='far fa-trash-alt px-2'></i>Usuń
+                                        </button>
+                                    </form>
+                                </div>
+                                <div id="editOption">
+                                    <form action="/edit-item" method="post" th:object="${item}">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <button class="btn btn-link" value="remove">
+                                            <i class='fas fa-edit px-2'></i>Edytuj
+                                        </button>
+                                    </form>
+                                </div>
+                                <div th:unless="${item.isAvailable()}" id="blockOption">
+                                    <form action="/block-item" method="post" th:object="${item}">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <button class="btn btn-link" value="remove">
+                                            <i class='fas fa-unlink px-2'></i>Zablokuj
+                                        </button>
+                                    </form>
+                                </div>
+                                <div th:if="${item.isAvailable()}" id="unBlockOption">
+                                    <form action="/unblock-item" method="post" th:object="${item}">
+                                        <input type="hidden" name="id" th:value="${item.id}">
+                                        <button class="btn btn-link" value="remove">
+                                            <i class='fas fa-redo-alt px-2'></i>Odblokuj
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 </body>
 <footer class="alt" th:include="footer :: footer"/>
 </html>
