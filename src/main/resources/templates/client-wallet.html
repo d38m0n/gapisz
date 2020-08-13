@@ -7,36 +7,36 @@
 <body>
 <div id="menu" class="alt" th:include="menu :: menu"/>
 <div>
-    <div class="container globalBox align-middle bg-warning w-75 h-75">
+    <div class="container globalBox align-middle bg-warning w-90 h-75">
         <div id="level1Wallet" class="container-fluid text-center p-5 h-100">
             <div class="row h-75 ">
 
                 <div id="basicInfClient" class="col-sm-2 sidenav">
                     <div id="container">
-                        <div id="basicInfo">
+                        <div id="basicInfo"class="bg-dark rounded text-left text-light p-2">
                             <div id="nameClient">
-                                <h5>Klient:</h5>
-                                <p th:text="${id_client.privatePersonID}"></p></div>
+                                <h5>Klient: <span th:text="${id_client.privatePersonID}"></span></h5>
+                                </div>
                             <div id="statusClient">
-                                <h5>Status:</h5>
-                                <p th:text="${id_client.status}"></p></div>
+                                <h5>Status:  <span th:text="${id_client.status}"></span></h5>
+                               </div>
                             <div id="dateStartClient">
-                                <h5>Od kiedy:</h5>
-                                <p th:text="${id_client.createData}"></p></div>
+                                <h5>Od kiedy:  <span th:text="${id_client.createData}"></span></h5>
+                               </div>
                             <div id="totalSumClient">
-                                <h5>W sumie wydał:</h5>
-                                <p th:text="${id_client.sumOfBuy}"></p></div>
+                                <h5>W sumie wydał: <span th:text="${id_client.sumOfBuy}"></span></h5>
+                                </div>
 
                         </div>
                         <div id="buttonsWallet">
-                            <div id="bAdd">
+                            <div id="bAdd" class="py-1">
                                 <form method="get" action="/shop">
                                     <input name="id_client" type="text" class="form-control"
                                            th:value="${id_client.privatePersonID}" hidden>
                                     <button type="submit" class="btn btn-secondary btn-block">Dodaj Nowy</button>
                                 </form>
                             </div>
-                            <div id="bInf" class="p-1">
+                            <div id="bInf" class="py-1">
                                 <form method="get" action="/client-information">
                                     <input name="id_client" type="text" class="form-control"
                                            th:value="${id_client.privatePersonID}" hidden>

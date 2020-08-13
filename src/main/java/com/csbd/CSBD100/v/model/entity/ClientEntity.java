@@ -3,6 +3,8 @@ package com.csbd.CSBD100.v.model.entity;
 import com.csbd.CSBD100.v.model.enums.categorie.Status;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +22,12 @@ public class ClientEntity {
     private String sumOfBuy;
 
     public String getSumOfBuy() {
-        return sumOfBuy;
+        Double sumOfBuy = items.stream()
+                .mapToDouble(ItemModelEntity::getSalePrice)
+                .sum();
+
+
+        return new DecimalFormat("#,##0.00").format(BigDecimal.valueOf(sumOfBuy));
     }
 
     public void setSumOfBuy(String sumOfBuy) {

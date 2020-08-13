@@ -65,9 +65,11 @@ public class ClientService {
     }
 
     private Optional<ClientEntity> findClient(String personalID) {
-        return getClientsEntity()
+        Optional<ClientEntity> ce = getClientsEntity()
                 .filter(c -> c.getPrivatePersonID().equals(personalID))
                 .findFirst();
+
+        return ce;
     }
 
 

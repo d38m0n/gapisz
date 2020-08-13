@@ -4,7 +4,7 @@
 
 <body>
 <div id="menu" class="alt" th:include="menu :: menu"/>
-<div class="containera globalBox align-middle bg-warning w-75 h-75">
+<div class="containera globalBox align-middle bg-warning w-90 h-75">
     <div id="tileBoxCreateUser" class="p-3">
     </div>
     <div id="createItem" class="p-5 ">
@@ -48,7 +48,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class='fas fa-hourglass-end'></i></span>
                             </div>
-                            <input id="expirationDate" type="text" aria-label="dd/mm/rrrr" class="form-control"
+                            <input id="expirationDate" type="date" aria-label="dd/mm/rrrr" class="form-control"
                                    th:field="*{expirationDate}" required/></div>
 
 
@@ -159,7 +159,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class='fas fa-hand-holding-usd'></i></span>
                             </div>
-                            <input id="salePrice" type="text" aria-label="0" class="form-control"
+                            <input id="salePrice" type="number" aria-label="0" class="form-control"
                                    th:field="*{salePrice}"
                                    required/>
                         </div>
@@ -181,13 +181,13 @@
             <tr class="d-flex">
                 <th class="col-3">Pełna nazwa</th>
                 <th class="col-1">Brandcode</th>
-                <th class="col-1">Ilość</th>
-                <th class="col-1">Ważne do</th>
-                <th class="col-1">Rodzaj</th>
-                <th class="col-1">Jednostka</th>
-                <th class="col-1">Cena zakupu</th>
-                <th class="col-1">Czas użytkowania</th>
-                <th class="col-1">Zablokowany</th>
+                <th class="col-1 text-center">Ilość</th>
+                <th class="col-1 text-center">Ważne do</th>
+                <th class="col-1 text-center">Rodzaj</th>
+                <th class="col-1 text-center">Jednostka</th>
+                <th class="col-1 text-center">Cena zakupu</th>
+                <th class="col-1 text-center">Czas użytkowania</th>
+                <th class="col-1 text-center">Zablokowany</th>
                 <th class="col-1 text-center "></th>
             </tr>
             </thead>
@@ -196,12 +196,12 @@
                 <div th:if="${item.dataAddToClient==null}">
                     <td class="col-3" th:text="${item.fullName}"></td>
                     <td class="col-1" th:text="${item.brandCode}"></td>
-                    <td class="col-1" th:text="${item.amount}"></td>
-                    <td class="col-1" th:text="${item.expirationDate}"></td>
-                    <td class="col-1" th:text="${item.itemKind}"></td>
-                    <td class="col-1" th:text="${item.unit}"></td>
-                    <td class="col-1" th:text="${item.paymentDate}"></td>
-                    <td class="col-1" th:text="${item.lengthOfWork}"></td>
+                    <td class="col-1 text-center" th:text="${item.amount}"></td>
+                    <td class="col-1 text-center" th:text="${item.expirationDate}"></td>
+                    <td class="col-1 text-center" th:text="${item.itemKind}"></td>
+                    <td class="col-1 text-center" th:text="${item.unit}"></td>
+                    <td class="col-1 text-center" th:text="${item.paymentDate}"></td>
+                    <td class="col-1 text-center" th:text="${item.lengthOfWork}"></td>
                     <td class="col-1 text-center ">
                         <span th:unless="${item.isAvailable()}"> NIE </span>
                         <span th:if="${item.isAvailable()}"> TAK </span></td>

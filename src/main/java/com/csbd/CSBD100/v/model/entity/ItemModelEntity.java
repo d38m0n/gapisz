@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,8 +25,8 @@ public class ItemModelEntity {
     private String unit;
     private String itemKind;
     private String lengthOfWork;
-    private String purchasePrice;
-    private String salePrice;
+    private Double purchasePrice;
+    private Double salePrice;
     private String tax;
     private int amount;
     private boolean available;
@@ -119,7 +120,7 @@ public class ItemModelEntity {
 
     }
 
-    public ItemModelEntity addPurchasePrice(String purchasePrice) {
+    public ItemModelEntity addPurchasePrice(Double purchasePrice) {
         this.purchasePrice = purchasePrice;
         return this;
     }
@@ -129,7 +130,7 @@ public class ItemModelEntity {
         return this;
     }
 
-    public ItemModelEntity addSalePrice(String salePrice) {
+    public ItemModelEntity addSalePrice(Double salePrice) {
         this.salePrice = salePrice;
         return this;
     }
@@ -211,19 +212,19 @@ public class ItemModelEntity {
         this.lengthOfWork = lengthOfWork;
     }
 
-    public String getPurchasePrice() {
+    public Double getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(String purchasePrice) {
+    public void setPurchasePrice(Double purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
-    public String getSalePrice() {
+    public Double getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(String salePrice) {
+    public void setSalePrice(Double salePrice) {
         this.salePrice = salePrice;
     }
 

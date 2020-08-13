@@ -25,8 +25,8 @@ public class ShopController {
     @GetMapping("/shop")
     public ModelAndView storyView(HttpServletRequest req) {
         String idClient = req.getParameter("id_client");
-
         List<ItemModelDTO> items = itemService.getItemsDTO();
+
         return new ModelAndView("shop","items",items)
                 .addObject("id_client",idClient);
     }
