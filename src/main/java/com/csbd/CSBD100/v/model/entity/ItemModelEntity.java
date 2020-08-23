@@ -25,7 +25,7 @@ public class ItemModelEntity {
     private String unit;
     private String itemKind;
     private String lengthOfWork;
-    private Double purchasePrice;
+    private Double purchasePrice ;
     private Double salePrice;
     private String tax;
     private int amount;

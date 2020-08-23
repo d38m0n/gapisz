@@ -11,8 +11,8 @@ public class ItemModelDTO {
     private String unit;
     private String itemKind;
     private String lengthOfWork;
-    private String purchasePrice;
-    private String salePrice;
+    private String purchasePrice  = "0.0";
+    private String salePrice  = "0.0";
     private String tax;
     private int amount;
     private String dateAddToMag;

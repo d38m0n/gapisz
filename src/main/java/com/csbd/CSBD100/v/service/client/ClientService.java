@@ -22,9 +22,9 @@ import java.util.stream.Stream;
 public class ClientService {
     private ModelMapper modelMapper;
     private ClientRepository clientRepository;
-
     @Autowired
     private UserService userService;
+
     @Autowired
     private ItemService itemService;
 
@@ -48,6 +48,7 @@ public class ClientService {
         return upload(findClient(personalID)
                 .orElse(new ClientEntity().setAutoCreate(personalID)));
     }
+
 
     public void addItem(String client, Long id) {
         ClientEntity c = findClient(client)

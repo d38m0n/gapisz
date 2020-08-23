@@ -12,6 +12,15 @@ public class ClientDTO {
     private String privatePersonID;
     private CustomerDataEntity customerDataEntity;
     private List<ItemModelEntity> Items = new ArrayList<>();
+    private String sumOfBuy;
+
+    public String getSumOfBuy() {
+        return sumOfBuy;
+    }
+
+    public void setSumOfBuy(String sumOfBuy) {
+        this.sumOfBuy = sumOfBuy;
+    }
 
     public int getIdClient() {
         return idClient;

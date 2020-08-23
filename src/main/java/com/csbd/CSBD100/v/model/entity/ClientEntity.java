@@ -22,12 +22,14 @@ public class ClientEntity {
     private String sumOfBuy;
 
     public String getSumOfBuy() {
-        Double sumOfBuy = items.stream()
-                .mapToDouble(ItemModelEntity::getSalePrice)
-                .sum();
-
-
-        return new DecimalFormat("#,##0.00").format(BigDecimal.valueOf(sumOfBuy));
+        try {
+            Double sumOfBuy = items.stream()
+                    .mapToDouble(ItemModelEntity::getSalePrice)
+                    .sum();
+            return new DecimalFormat("#,##0.00").format(BigDecimal.valueOf(sumOfBuy));
+        } catch (NullPointerException e) {
+            return "0000000.0";
+        }
     }
 
     public void setSumOfBuy(String sumOfBuy) {

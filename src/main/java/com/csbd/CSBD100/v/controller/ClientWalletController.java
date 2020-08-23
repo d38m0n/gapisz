@@ -27,9 +27,6 @@ public class ClientWalletController {
     public ModelAndView viewWallet(HttpServletRequest req) {
         String idClient = req.getParameter("id_client");
         ClientEntity ce = clientService.viewClient(idClient);
-
-
-
         ClientEntity clientEntity = ce;
 
             return new ModelAndView ("client-wallet","id_client", clientEntity);

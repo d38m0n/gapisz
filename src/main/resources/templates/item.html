@@ -232,7 +232,7 @@
                                     <form action="/block-item" method="post" th:object="${item}">
                                         <input type="hidden" name="id" th:value="${item.id}">
                                         <button class="btn btn-link" value="remove">
-                                            <i class='fas fa-unlink px-2'></i>Zablokuj
+                                            <i class='	fas fa-eye-slash px-2'></i>Zablokuj
                                         </button>
                                     </form>
                                 </div>
@@ -240,7 +240,7 @@
                                     <form action="/unblock-item" method="post" th:object="${item}">
                                         <input type="hidden" name="id" th:value="${item.id}">
                                         <button class="btn btn-link" value="remove">
-                                            <i class='fas fa-redo-alt px-2'></i>Odblokuj
+                                            <i class='far fa-eye px-2'></i>Odblokuj
                                         </button>
                                     </form>
                                 </div>
